@@ -10,6 +10,10 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key 505A7412 && \
 
 EXPOSE 27017
 
-ENTRYPOINT ["/usr/bin/mongod"]
+VOLUME [ "/var/lib/tokumx" ]
 
-CMD ["--config", "/etc/tokumx.conf"]
+ADD ./config/tokumx.conf /etc/tokumx.conf
+
+ENTRYPOINT [ "/usr/bin/mongod" ]
+
+CMD [ "--config", "/etc/tokumx.conf" ]
